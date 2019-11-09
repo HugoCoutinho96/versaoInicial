@@ -1,22 +1,24 @@
 <template>
-	<div id="app">
-		<Header/>
-		<Menu/>
-		<Content/>
-		<Footer/>
+	<div id="app" :class="{'hide-menu': !isMenuVisible}">
+		<Header title="Cod3r - Base de Conhecimento" :hideToggle="false" />
+		<Menu />
+		<Content />
+		<Footer />
 	</div>
 </template>
 
 <script>
 
-import Header from "./components/template/Header"
-import Menu from "./components/template/Menu"
-import Content from "./components/template/Content"
-import Footer from "./components/template/Footer"
+import Header from "@/components/template/Header"
+import Menu from "@/components/template/Menu"
+import Content from "@/components/template/Content"
+import Footer from "@/components/template/Footer"
+import { mapState } from 'vuex'
 
 export default {
 	name: "App",
-	components: {Header, Menu, Content, Footer}
+	components: {Header, Menu, Content, Footer},
+	computed: mapState(['isMenuVisible'])	
 }
 </script>
 
@@ -41,5 +43,12 @@ export default {
 			"header header"
 			"menu content"
 			"menu footer";
+	}
+
+	#app.hide-menu{
+		grid-template-areas:
+			'header header'
+			'content content'
+			'footer footer'
 	}
 </style>
